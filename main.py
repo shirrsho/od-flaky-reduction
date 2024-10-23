@@ -21,7 +21,7 @@ def main(project_dir, output_file):
 
 if __name__ == "__main__":
     # Path to the Java source files directory
-    project_dir = "/Users/shirsho/developer/thesis/fastjson/src"
+    project_dir = "/Users/shirsho/developer/thesis/Activiti/activiti-spring-boot-starter/src"
     output_file = "ast.json"
     
     main(project_dir, output_file)

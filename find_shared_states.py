@@ -91,10 +91,32 @@ def write_dependencies_to_file(dependencies, output_file):
             f.write(f"Test: {test_method}\n")  # Now test method includes file path
             if shared_states:
                 f.write("Shared States:\n")
+                with open('orders.txt', 'a+') as ff:
+                    ff.write(f"{test_method.replace('.java','').replace(' ','').replace('/','.').replace(':','.')}\n")
                 for state in shared_states:
                     f.write(f"  - {state}\n")
             f.write("\n")
     print(f"Dependencies written to {output_file}")
+
+def print_results(expected_file, output_file):
+    with open(expected_file, 'r') as e :
+        expecteds = e.read()
+    with open(output_file,'r') as o:
+        outputs = o.read()
+    expected_list = list(set(expecteds.split('\n')))
+    output_list = list(set(outputs.split('\n')))
+    
+    matches = []
+    for expected in expected_list:
+        for output in output_list:
+            if expected in output:  # Substring check
+                matches.append(expected)
+                break  # Avoid counting the same expected multiple times
+
+    # Print the number of matches and the matching items
+    print(f"Number of matches: {len(matches)}")
+    print(f"Expected Number of matches: {len(expected_list)}")
+    print(round(len(matches)*100/len(expected_list),2))
 
 # Process the AST to find shared static fields
 static_fields = find_static_fields(ast_data)
@@ -105,3 +127,4 @@ test_dependencies = find_test_methods_and_dependencies(ast_data, static_fields)
 # Write the results to a file
 output_file = "shared_states_dependencies.txt"
 write_dependencies_to_file(test_dependencies, output_file)
+print_results('Activiti_Activiti-activiti-spring-boot-starter-b11f757-original_order','orders.txt')
