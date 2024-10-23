@@ -1,1 +1,3 @@
-./ASTExtractor-0.5.jar
+ASTExtractor-0.5.jar
+ast.json
+shared_states_dependencies.txr
