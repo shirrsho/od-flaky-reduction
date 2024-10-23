@@ -1,6 +1,5 @@
 import json
 
-# Sample AST data (this would normally be read from a file or directly passed)
 # Open and read the JSON file
 with open('ast.json', 'r') as file:
     ast_data = json.load(file)
@@ -39,17 +38,9 @@ def find_static_fields(ast):
     
     return static_fields
 
-def is_test_annotation(annotations):
-    """Checks if the annotations contain @Test."""
-    if isinstance(annotations, dict):
-        # Single annotation case
-        return annotations.get('SimpleName') == 'Test'
-    elif isinstance(annotations, list):
-        # Multiple annotations, check if @Test is one of them
-        for annotation in annotations:
-            if isinstance(annotation, dict) and annotation.get('SimpleName') == 'Test':
-                return True
-    return False
+def is_test_method(file_path):
+    """Checks if the file path contains 'test' or 'tests' (case-insensitive)."""
+    return 'test' in file_path.lower().split('/') or 'tests' in file_path.lower().split('/')
 
 def find_test_methods_and_dependencies(ast, static_fields):
     """Finds test methods and checks if they reference any static fields."""
@@ -58,6 +49,10 @@ def find_test_methods_and_dependencies(ast, static_fields):
     for file_data in ast['folder']['file']:
         file_ast = file_data['ast']
         file_path = file_data['path']
+        
+        # Check if this file likely contains test methods based on the file path
+        if not is_test_method(file_path):
+            continue
         
         type_declarations = file_ast.get('CompilationUnit', {}).get('TypeDeclaration', [])
         
@@ -75,24 +70,23 @@ def find_test_methods_and_dependencies(ast, static_fields):
                 for method in method_declarations:
                     if isinstance(method, dict):  # Ensure method is a dictionary
                         method_name = method.get('SimpleName', None)
-                        annotations = method.get('MarkerAnnotation', {})
 
-                        # Only check methods annotated with @Test
-                        if is_test_annotation(annotations):
-                            # Key will now include file path and method name
-                            key = f"{file_path}: {method_name}"
-                            dependencies[key] = []
+                        # Key will now include file path and method name
+                        key = f"{file_path}: {method_name}"
+                        dependencies[key] = []
 
-                            # Check for field accesses in the method body (mock the logic)
-                            for field_path, field_name in static_fields:
-                                if file_path in field_path:
-                                    dependencies[key].append(f"{field_path}: {field_name}")
+                        # Check for field accesses in the method body (mock the logic)
+                        for field_path, field_name in static_fields:
+                            if file_path in field_path:
+                                dependencies[key].append(f"{field_path}: {field_name}")
     
     return dependencies
 
 def write_dependencies_to_file(dependencies, output_file):
     """Write the detected dependencies to a file."""
     with open(output_file, 'w') as f:
+        if not dependencies:
+            f.write("No test methods found.\n")
         for test_method, shared_states in dependencies.items():
             f.write(f"Test: {test_method}\n")  # Now test method includes file path
             if shared_states:
