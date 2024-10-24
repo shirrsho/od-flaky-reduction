@@ -1,4 +1,5 @@
 import json
+import os
 
 # Open and read the JSON file
 # with open('ast.json', 'r') as file:
@@ -84,14 +85,14 @@ def find_test_methods_and_dependencies(ast, static_fields):
 
 def write_dependencies_to_file(dependencies, output_file):
     """Write the detected dependencies to a file."""
-    with open(output_file, 'w') as f:
+    with open('shared_states_dependencies.txt', 'w') as f:
         if not dependencies:
             f.write("No test methods found.\n")
         for test_method, shared_states in dependencies.items():
             f.write(f"Test: {test_method}\n")  # Now test method includes file path
             if shared_states:
                 f.write("Shared States:\n")
-                with open('orders.txt', 'a+') as ff:
+                with open(output_file, 'a+') as ff:
                     ff.write(f"{test_method.replace('.java','').replace(' ','').replace('/','.').replace(':','.')}\n")
                 for state in shared_states:
                     f.write(f"  - {state}\n")
@@ -120,7 +121,9 @@ def print_results(expected_file, output_file):
 
 
 
-def find(ast_data, output_order, original_order):
+def find(ast, output_order, original_order):
+    with open(os.path.join(ast, 'ast.json'), 'r') as file:
+        ast_data = json.load(file)
     # Process the AST to find shared static fields
     static_fields = find_static_fields(ast_data)
 
