@@ -7,18 +7,15 @@ from find_shared_states import find
 
 ast_extractor = ASTExtractor("ASTExtractor-0.5.jar", "ASTExtractor.properties")
 
-def write_static_fields_to_file(static_fields, output_folder_ast):
+def write_static_fields_to_file(static_fields, identifier):
     """Write all found static fields to an output file."""
     data = json.loads(static_fields)
 
     # Create the directory if it doesn't exist
-    Path(output_folder_ast).mkdir(parents=True, exist_ok=True)
-    
-    # Full file path
-    file_path = os.path.join(output_folder_ast, 'ast.json')
+    Path('io/ast').mkdir(parents=True, exist_ok=True)
 
     
-    with open(file_path, "w") as outfile:
+    with open('io/ast/'+identifier+'.json', "w") as outfile:
         json.dump(data, outfile, sort_keys = True, indent = 4,
                ensure_ascii = False)
 
@@ -35,19 +32,28 @@ if __name__ == "__main__":
     projects = [
         {
             "repo": "io/repos/Activiti-b11f757a48600e53aaf3fcb7a3ba1ece6c463cb4/activiti-spring-boot-starter/src",
-            "original_order":"io/original_orders/Activiti_Activiti-activiti-spring-boot-starter-b11f757-original_order",
-            "ast":"io/ast/Activiti_Activiti-activiti-spring-boot-starter-b11f757",
-            "output_order":"io/output_orders/Activiti_Activiti-activiti-spring-boot-starter-b11f757-output_order"
+            "identifier": "Activiti-b11f757a48600e53aaf3fcb7a3ba1ece6c463cb4-activiti-spring-boot-starter",
+            "original_order":"io/original_orders/Activiti_Activiti-activiti-spring-boot-starter-b11f757-original_order"
         },
         {
             "repo": "io/repos/fastjson-5c6d6fd471ea1fab59f0df2dd31e0b936806780d/src",
-            "original_order":"io/original_orders/alibaba_fastjson-.-5c6d6fd-original_order",
-            "ast":"io/ast/fastjson-5c6d6fd471ea1fab59f0df2dd31e0b936806780d",
-            "output_order":"io/output_orders/fastjson-5c6d6fd471ea1fab59f0df2dd31e0b936806780d-output_order"
+            "identifier": "fastjson-5c6d6fd471ea1fab59f0df2dd31e0b936806780d",
+            "original_order":"io/original_orders/alibaba_fastjson-.-5c6d6fd-original_order"
+        },
+        {
+            "repo": "io/repos/hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea/hadoop-common-project/hadoop-auth/src",
+            "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-common-project-hadoop-auth",
+            "original_order":"io/original_orders/apache_hadoop-hadoop-common-project_hadoop-auth-cc2babc-original_order"
+        },
+        {
+            "repo": "io/repos/hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea/hadoop-hdfs-project/hadoop-hdfs-nfs/src",
+            "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-hdfs-project-hadoop-hdfs-nfs",
+            "original_order":"io/original_orders/apache_hadoop-hadoop-hdfs-project_hadoop-hdfs-nfs-cc2babc-original_order"
         },
         # Add more directories here
+        
     ]
     
     for project in projects:
-        gen_ast(project["repo"], project["ast"])
-        find(project["ast"], project["output_order"], project["original_order"])
+        gen_ast(project["repo"], project["identifier"])
+        find(project["identifier"], project["original_order"])

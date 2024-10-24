@@ -1,5 +1,6 @@
 import json
 import os
+from pathlib import Path
 
 # Open and read the JSON file
 # with open('ast.json', 'r') as file:
@@ -83,26 +84,28 @@ def find_test_methods_and_dependencies(ast, static_fields):
     
     return dependencies
 
-def write_dependencies_to_file(dependencies, output_file):
+def write_dependencies_to_file(dependencies, identifier):
     """Write the detected dependencies to a file."""
+    Path('io/output_orders').mkdir(parents=True, exist_ok=True)
     with open('shared_states_dependencies.txt', 'w') as f:
         if not dependencies:
             f.write("No test methods found.\n")
-        for test_method, shared_states in dependencies.items():
-            f.write(f"Test: {test_method}\n")  # Now test method includes file path
-            if shared_states:
-                f.write("Shared States:\n")
-                with open(output_file, 'a+') as ff:
-                    ff.write(f"{test_method.replace('.java','').replace(' ','').replace('/','.').replace(':','.')}\n")
-                for state in shared_states:
-                    f.write(f"  - {state}\n")
-            f.write("\n")
-    print(f"Dependencies written to {output_file}")
+        else:
+            with open('io/output_orders/'+identifier, 'a+') as ff:
+                for test_method, shared_states in dependencies.items():
+                    f.write(f"Test: {test_method}\n")  # Now test method includes file path
+                    if shared_states:
+                        f.write("Shared States:\n")
+                        ff.write(f"{test_method.replace('.java','').replace(' ','').replace('/','.').replace(':','.')}\n")
+                        for state in shared_states:
+                            f.write(f"  - {state}\n")
+                    f.write("\n")
+    print(f"Tests written to {'io/output_orders/'+identifier}")
 
-def print_results(expected_file, output_file):
+def print_results(expected_file, identifier):
     with open(expected_file, 'r') as e :
         expecteds = e.read()
-    with open(output_file,'r') as o:
+    with open('io/output_orders/'+identifier,'r') as o:
         outputs = o.read()
     expected_list = list(set(expecteds.split('\n')))
     output_list = list(set(outputs.split('\n')))
@@ -114,15 +117,20 @@ def print_results(expected_file, output_file):
                 matches.append(expected)
                 break  # Avoid counting the same expected multiple times
 
+    with open('result.txt', 'a+') as f:
+        f.write(f"{identifier}\n")
+        f.write(f"Number of matches: {len(matches)}\n")
+        f.write(f"Expected Number of matches: {len(expected_list)}\n")
+        f.write(f"{round(len(matches)*100/len(expected_list),2)}"+'\n\n')
     # Print the number of matches and the matching items
-    print(f"Number of matches: {len(matches)}")
+    print()
     print(f"Expected Number of matches: {len(expected_list)}")
     print(round(len(matches)*100/len(expected_list),2))
 
 
 
-def find(ast, output_order, original_order):
-    with open(os.path.join(ast, 'ast.json'), 'r') as file:
+def find(identifier, original_order):
+    with open('io/ast/'+identifier+'.json', 'r') as file:
         ast_data = json.load(file)
     # Process the AST to find shared static fields
     static_fields = find_static_fields(ast_data)
@@ -131,5 +139,5 @@ def find(ast, output_order, original_order):
     test_dependencies = find_test_methods_and_dependencies(ast_data, static_fields)
 
     # Write the results to a file
-    write_dependencies_to_file(test_dependencies, output_order)
-    print_results(original_order, output_order)
+    write_dependencies_to_file(test_dependencies, identifier)
+    print_results(original_order, identifier)
