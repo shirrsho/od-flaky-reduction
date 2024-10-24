@@ -1,8 +1,8 @@
 import json
 
 # Open and read the JSON file
-with open('ast.json', 'r') as file:
-    ast_data = json.load(file)
+# with open('ast.json', 'r') as file:
+#     ast_data = json.load(file)
 
 def find_static_fields(ast):
     """Finds all static fields in the given AST."""
@@ -118,13 +118,15 @@ def print_results(expected_file, output_file):
     print(f"Expected Number of matches: {len(expected_list)}")
     print(round(len(matches)*100/len(expected_list),2))
 
-# Process the AST to find shared static fields
-static_fields = find_static_fields(ast_data)
 
-# Find test methods and link them to the static fields they access
-test_dependencies = find_test_methods_and_dependencies(ast_data, static_fields)
 
-# Write the results to a file
-output_file = "shared_states_dependencies.txt"
-write_dependencies_to_file(test_dependencies, output_file)
-print_results('Activiti_Activiti-activiti-spring-boot-starter-b11f757-original_order','orders.txt')
+def find(ast_data, output_order, original_order):
+    # Process the AST to find shared static fields
+    static_fields = find_static_fields(ast_data)
+
+    # Find test methods and link them to the static fields they access
+    test_dependencies = find_test_methods_and_dependencies(ast_data, static_fields)
+
+    # Write the results to a file
+    write_dependencies_to_file(test_dependencies, output_order)
+    print_results(original_order, output_order)
