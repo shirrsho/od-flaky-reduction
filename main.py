@@ -34,4 +34,4 @@ if __name__ == "__main__":
     
     for project in projects:
         gen_ast(project["repo"], project["identifier"])
-        find(project["identifier"], project["original_order"])
+        find(project["identifier"])

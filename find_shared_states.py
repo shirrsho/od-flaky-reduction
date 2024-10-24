@@ -102,8 +102,8 @@ def write_dependencies_to_file(dependencies, identifier):
                     f.write("\n")
     print(f"Tests written to {'io/output_orders/'+identifier}")
 
-def print_results(expected_file, identifier):
-    with open(expected_file, 'r') as e :
+def print_results(identifier):
+    with open('io/original_orders_test/'+identifier, 'r') as e :
         expecteds = e.read()
     with open('io/output_orders/'+identifier,'r') as o:
         outputs = o.read()
@@ -129,7 +129,7 @@ def print_results(expected_file, identifier):
 
 
 
-def find(identifier, original_order):
+def find(identifier):
     with open('io/ast/'+identifier+'.json', 'r') as file:
         ast_data = json.load(file)
     # Process the AST to find shared static fields
@@ -140,4 +140,4 @@ def find(identifier, original_order):
 
     # Write the results to a file
     write_dependencies_to_file(test_dependencies, identifier)
-    print_results(original_order, identifier)
+    print_results(identifier)

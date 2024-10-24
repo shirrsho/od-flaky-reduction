@@ -1,29 +1,24 @@
 projects = [
     {
         "repo": "io/repos/Activiti-b11f757a48600e53aaf3fcb7a3ba1ece6c463cb4/activiti-spring-boot-starter/src",
-        "identifier": "Activiti-b11f757a48600e53aaf3fcb7a3ba1ece6c463cb4-activiti-spring-boot-starter",
-        "original_order":"io/original_orders/Activiti_Activiti-activiti-spring-boot-starter-b11f757-original_order"
+        "identifier": "Activiti-b11f757a48600e53aaf3fcb7a3ba1ece6c463cb4-activiti-spring-boot-starter"
     },
     {
         "repo": "io/repos/fastjson-5c6d6fd471ea1fab59f0df2dd31e0b936806780d/src",
-        "identifier": "fastjson-5c6d6fd471ea1fab59f0df2dd31e0b936806780d",
-        "original_order":"io/original_orders/alibaba_fastjson-.-5c6d6fd-original_order"
+        "identifier": "fastjson-5c6d6fd471ea1fab59f0df2dd31e0b936806780d-"
     },
     {
         "repo": "io/repos/hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea/hadoop-common-project/hadoop-auth/src",
-        "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-common-project-hadoop-auth",
-        "original_order":"io/original_orders/apache_hadoop-hadoop-common-project_hadoop-auth-cc2babc-original_order"
+        "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-common-project-hadoop-auth"
     },
     {
         "repo": "io/repos/hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea/hadoop-hdfs-project/hadoop-hdfs-nfs/src",
-        "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-hdfs-project-hadoop-hdfs-nfs",
-        "original_order":"io/original_orders/apache_hadoop-hadoop-hdfs-project_hadoop-hdfs-nfs-cc2babc-original_order"
+        "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-hdfs-project-hadoop-hdfs-nfs"
     },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-app",
-    #     "original_order": "order"
-    # },
+    {
+        "repo": "io/repos/hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-app/src",
+        "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-app"
+    },
     # {
     #     "repo": "repo",
     #     "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-core",
