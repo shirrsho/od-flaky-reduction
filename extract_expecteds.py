@@ -2,7 +2,10 @@ from pathlib import Path
 from repos import projects
 
 def read_csv_and_print_matching_columns(file_path, match_column, match_value, column1, column2):
-    Path('io/original_orders_test').mkdir(parents=True, exist_ok=True)
+    Path('io/expected_tests').mkdir(parents=True, exist_ok=True)
+    
+    unique_entries = set()  # To store unique (column1, column2) pairs
+    
     with open(file_path, 'r') as file:
         # Read the header line
         header = file.readline().strip().split(',')
@@ -16,8 +19,9 @@ def read_csv_and_print_matching_columns(file_path, match_column, match_value, co
             print(f"Error: {e}")
             return
         
-        with open('io/original_orders_test/'+match_value,'w') as out:
+        output_path = f'io/expected_tests/{match_value}'
         
+        with open(output_path, 'w') as out:
             # Read each subsequent line in the file
             for line in file:
                 # Split the line into values
@@ -25,9 +29,15 @@ def read_csv_and_print_matching_columns(file_path, match_column, match_value, co
                 
                 # Check if the match value in the specified column matches
                 if values[match_index] == match_value:
-                    # Print the values of the specified columns
-                    print(f"{header[column1_index]}: {values[column1_index]}, {header[column2_index]}: {values[column2_index]}")
-                    out.write(f"{values[column1_index]}\n{values[column2_index]}\n")
+                    
+                    # Add to the set if it's unique
+                    if values[column1_index] not in unique_entries:
+                        unique_entries.add(values[column1_index])
+                        out.write(f"{values[column1_index]}\n")
+                    
+                    if values[column2_index] not in unique_entries:
+                        unique_entries.add(values[column2_index])
+                        out.write(f"{values[column2_index]}\n")
 
 # Example usage
 file_path = 'data.csv'  # Replace with your CSV file path
@@ -39,5 +49,3 @@ projects = projects
 
 for project in projects:
     read_csv_and_print_matching_columns(file_path, match_column, project["identifier"], column1, column2)
-
-

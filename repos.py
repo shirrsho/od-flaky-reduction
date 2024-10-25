@@ -19,71 +19,74 @@ projects = [
         "repo": "io/repos/hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-app/src",
         "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-app"
     },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-core",
-    #     "original_order": "order"
-    # },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-hs",
-    #     "original_order": "order"
-    # },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-cluster",
-    #     "original_order": "order"
-    # },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-common",
-    #     "original_order": "order"
-    # },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-config-dubbo-config-api",
-    #     "original_order": "order"
-    # },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-filter-dubbo-filter-cache",
-    #     "original_order": "order"
-    # },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-rpc-dubbo-rpc-api",
-    #     "original_order": "order"
-    # },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-rpc-dubbo-rpc-dubbo",
-    #     "original_order": "order"
-    # },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-serialization-dubbo-serialization-fst",
-    #     "original_order": "order"
-    # },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "Struts-13d9053050c9e4fb2ef049db6a37d3f6eebf48fa-plugins-portlet",
-    #     "original_order": "order"
-    # },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "c2mon-d80687b119c713dd177a58cf53a997d8cc5ca264-c2mon-server-c2mon-server-elasticsearch",
-    #     "original_order": "order"
-    # },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "cukes-b483e1a8f261b80a66291a42fc455256b0b5059c-cukes-http",
-    #     "original_order": "order"
-    # },
-    # {
-    #     "repo": "repo",
-    #     "identifier": "Achilles-e3099bdce342910951c4862c78751fd81ed4552e-integration-test-2_1",
-    #     "original_order": "order"
-    # },
+    {
+        "repo": "io/repos/hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core/src",
+        "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-core",
+        "original_order": "order"
+    },
+    {
+        "repo": "io/repos/hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-hs/src",
+        "identifier": "hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-hs",
+        "original_order": "order"
+    },
+    {
+        "repo": "io/repos/dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7/dubbo-cluster/src",
+        "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-cluster",
+        "original_order": "order"
+    },
+    {
+        "repo": "io/repos/dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7/dubbo-common/src",
+        "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-common",
+        "original_order": "order"
+    },
+    {
+        "repo": "io/repos/dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7/dubbo-config/dubbo-config-api/src",
+        "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-config-dubbo-config-api",
+        "original_order": "order"
+    },
+    {
+        "repo": "io/repos/dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7/dubbo-filter/dubbo-filter-cache/src",
+        "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-filter-dubbo-filter-cache",
+        "original_order": "order"
+    },
+    {
+        "repo": "io/repos/dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7/dubbo-rpc/dubbo-rpc-api/src",
+        "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-rpc-dubbo-rpc-api",
+        "original_order": "order"
+    },
+    {
+        "repo": "io/repos/dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7/dubbo-rpc/dubbo-rpc-dubbo/src",
+        "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-rpc-dubbo-rpc-dubbo",
+        "original_order": "order"
+    },
+    {
+        "repo": "io/repos/dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7/dubbo-serialization/dubbo-serialization-fst/src",
+        "identifier": "dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-serialization-dubbo-serialization-fst",
+        "original_order": "order"
+    },
+    {
+        "repo": "io/repos/Struts-13d9053050c9e4fb2ef049db6a37d3f6eebf48fa/plugins/portlet/src",
+        "identifier": "Struts-13d9053050c9e4fb2ef049db6a37d3f6eebf48fa-plugins-portlet",
+        "original_order": "order"
+    },
+    {
+        "repo": "io/repos/c2mon-d80687b119c713dd177a58cf53a997d8cc5ca264/c2mon-server/c2mon-server-elasticsearch/src",
+        "identifier": "c2mon-d80687b119c713dd177a58cf53a997d8cc5ca264-c2mon-server-c2mon-server-elasticsearch",
+        "original_order": "order"
+    },
+    {
+        "repo": "io/repos/cukes-b483e1a8f261b80a66291a42fc455256b0b5059c/cukes-http/src",
+        "identifier": "cukes-b483e1a8f261b80a66291a42fc455256b0b5059c-cukes-http",
+        "original_order": "order"
+    },
+    {
+        "repo": "io/repos/Achilles-e3099bdce342910951c4862c78751fd81ed4552e/integration-test-2_1/src",
+        "identifier": "Achilles-e3099bdce342910951c4862c78751fd81ed4552e-integration-test-2_1",
+        "original_order": "order"
+    },
+
+
+
     # {
     #     "repo": "repo",
     #     "identifier": "Achilles-e3099bdce342910951c4862c78751fd81ed4552e-integration-test-2_2",

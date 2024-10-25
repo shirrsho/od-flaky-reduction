@@ -10,10 +10,11 @@ def find_static_fields(ast):
     """Finds all static fields in the given AST."""
     static_fields = set()
     
+    test_count = 0
     for file_data in ast['folder']['file']:
         file_ast = file_data['ast']
         file_path = file_data['path']
-        
+
         type_declarations = file_ast.get('CompilationUnit', {}).get('TypeDeclaration', [])
         
         # Ensure type_declarations is a list
@@ -35,8 +36,11 @@ def find_static_fields(ast):
                         if isinstance(modifiers, list) and 'static' in modifiers:
                             # Get the field name and add it to the static_fields set
                             variable_name = field.get('VariableDeclarationFragment', None)
-                            if variable_name:
-                                static_fields.add((file_path, variable_name))
+                            if not isinstance(variable_name,list):
+                                variable_name = [variable_name]
+                                for v in variable_name:
+                                    static_fields.add((file_path, v))
+    
     
     return static_fields
 
@@ -48,6 +52,8 @@ def find_test_methods_and_dependencies(ast, static_fields):
     """Finds test methods and checks if they reference any static fields."""
     dependencies = {}
 
+    test_count = 0
+
     for file_data in ast['folder']['file']:
         file_ast = file_data['ast']
         file_path = file_data['path']
@@ -55,7 +61,6 @@ def find_test_methods_and_dependencies(ast, static_fields):
         # Check if this file likely contains test methods based on the file path
         if not is_test_method(file_path):
             continue
-        
         type_declarations = file_ast.get('CompilationUnit', {}).get('TypeDeclaration', [])
         
         # Ensure type_declarations is a list
@@ -70,6 +75,9 @@ def find_test_methods_and_dependencies(ast, static_fields):
                     method_declarations = [method_declarations]  # Ensure it's a list
 
                 for method in method_declarations:
+                    if is_test_method(file_path=file_path) : 
+                        test_count = test_count + 1
+                        
                     if isinstance(method, dict):  # Ensure method is a dictionary
                         method_name = method.get('SimpleName', None)
 
@@ -81,17 +89,19 @@ def find_test_methods_and_dependencies(ast, static_fields):
                         for field_path, field_name in static_fields:
                             if file_path in field_path:
                                 dependencies[key].append(f"{field_path}: {field_name}")
-    
+    global total_test_count
+    total_test_count = test_count
     return dependencies
 
 def write_dependencies_to_file(dependencies, identifier):
     """Write the detected dependencies to a file."""
-    Path('io/output_orders').mkdir(parents=True, exist_ok=True)
-    with open('shared_states_dependencies.txt', 'w') as f:
+    Path('io/found_tests').mkdir(parents=True, exist_ok=True)
+    Path('io/dependencies').mkdir(parents=True, exist_ok=True)
+    with open('io/dependencies/'+identifier, 'a+') as f:
         if not dependencies:
             f.write("No test methods found.\n")
         else:
-            with open('io/output_orders/'+identifier, 'a+') as ff:
+            with open('io/found_tests/'+identifier, 'a+') as ff:
                 for test_method, shared_states in dependencies.items():
                     f.write(f"Test: {test_method}\n")  # Now test method includes file path
                     if shared_states:
@@ -100,15 +110,31 @@ def write_dependencies_to_file(dependencies, identifier):
                         for state in shared_states:
                             f.write(f"  - {state}\n")
                     f.write("\n")
-    print(f"Tests written to {'io/output_orders/'+identifier}")
+    # print(f"Tests written to {'io/found_tests/'+identifier}")
 
 def print_results(identifier):
-    with open('io/original_orders_test/'+identifier, 'r') as e :
-        expecteds = e.read()
-    with open('io/output_orders/'+identifier,'r') as o:
-        outputs = o.read()
-    expected_list = list(set(expecteds.split('\n')))
-    output_list = list(set(outputs.split('\n')))
+    expected_set = set()  # Using set to ensure uniqueness
+    output_set = set()
+
+    # Read the 'expected' file line by line using readline
+    with open('io/expected_tests/'+identifier, 'r') as e:
+        while True:
+            line = e.readline().strip()  # Read line and remove any extra whitespace or newlines
+            if not line:
+                break  # Stop if we reach the end of the file
+            expected_set.add(line)  # Add line to the set (automatically handles uniqueness)
+
+    # Read the 'output' file line by line using readline
+    with open('io/found_tests/'+identifier, 'r') as o:
+        while True:
+            line = o.readline().strip()  # Read line and remove any extra whitespace or newlines
+            if not line:
+                break  # Stop if we reach the end of the file
+            output_set.add(line)  # Add line to the set (automatically handles uniqueness)
+
+    # Convert sets back to lists
+    expected_list = list(expected_set)
+    output_list = list(output_set)
     
     matches = []
     for expected in expected_list:
@@ -119,13 +145,11 @@ def print_results(identifier):
 
     with open('result.txt', 'a+') as f:
         f.write(f"{identifier}\n")
+        f.write(f"Total Number of test cases: {total_test_count}\n")
+        f.write(f"Number of test case after reduction: {len(output_list)}\n")
         f.write(f"Number of matches: {len(matches)}\n")
         f.write(f"Expected Number of matches: {len(expected_list)}\n")
         f.write(f"{round(len(matches)*100/len(expected_list),2)}"+'\n\n')
-    # Print the number of matches and the matching items
-    print()
-    print(f"Expected Number of matches: {len(expected_list)}")
-    print(round(len(matches)*100/len(expected_list),2))
 
 
 
