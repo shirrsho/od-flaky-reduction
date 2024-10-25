@@ -1,16 +1,21 @@
 import json
-import os
 from pathlib import Path
 
-# Open and read the JSON file
-# with open('ast.json', 'r') as file:
-#     ast_data = json.load(file)
+def in_original_orders(file_path):
+    return True
+    # file_path = file_path.replace('/','.').replace('.java','').strip()
+    # found = False
+    # with open('io/original-orders/Activiti_Activiti-activiti-spring-boot-starter-b11f757-original_order', 'r') as f:
+    #     lines = f.readlines()
+    #     for line in lines:
+    #         if file_path in line.strip().rsplit('.', 1)[0] or line.strip().rsplit('.', 1)[0] in file_path :
+    #             found = True
+    # return found
 
 def find_static_fields(ast):
     """Finds all static fields in the given AST."""
     static_fields = set()
     
-    test_count = 0
     for file_data in ast['folder']['file']:
         file_ast = file_data['ast']
         file_path = file_data['path']
@@ -57,8 +62,8 @@ def find_test_methods_and_dependencies(ast, static_fields):
     for file_data in ast['folder']['file']:
         file_ast = file_data['ast']
         file_path = file_data['path']
-        
-        # Check if this file likely contains test methods based on the file path
+
+        if not in_original_orders(file_path) : continue
         if not is_test_method(file_path):
             continue
         type_declarations = file_ast.get('CompilationUnit', {}).get('TypeDeclaration', [])
