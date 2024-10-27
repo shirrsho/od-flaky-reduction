@@ -1,16 +1,15 @@
 import json
 from pathlib import Path
 
-def in_original_orders(file_path):
-    return True
-    # file_path = file_path.replace('/','.').replace('.java','').strip()
-    # found = False
-    # with open('io/original-orders/Activiti_Activiti-activiti-spring-boot-starter-b11f757-original_order', 'r') as f:
-    #     lines = f.readlines()
-    #     for line in lines:
-    #         if file_path in line.strip().rsplit('.', 1)[0] or line.strip().rsplit('.', 1)[0] in file_path :
-    #             found = True
-    # return found
+def in_original_orders(file_path, identifier):
+    file_path = file_path.replace('/','.').replace('.java','').strip()
+    found = False
+    with open('io/original/'+identifier, 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            if file_path in line.strip().rsplit('.', 1)[0] or line.strip().rsplit('.', 1)[0] in file_path :
+                found = True
+    return found
 
 def find_static_fields(ast):
     """Finds all static fields in the given AST."""
@@ -53,7 +52,7 @@ def is_test_method(file_path):
     """Checks if the file path contains 'test' or 'tests' (case-insensitive)."""
     return 'test' in file_path.lower().split('/') or 'tests' in file_path.lower().split('/')
 
-def find_test_methods_and_dependencies(ast, static_fields):
+def find_test_methods_and_dependencies(ast, static_fields, identifier):
     """Finds test methods and checks if they reference any static fields."""
     dependencies = {}
 
@@ -63,7 +62,7 @@ def find_test_methods_and_dependencies(ast, static_fields):
         file_ast = file_data['ast']
         file_path = file_data['path']
 
-        if not in_original_orders(file_path) : continue
+        if not in_original_orders(file_path, identifier) : continue
         if not is_test_method(file_path):
             continue
         type_declarations = file_ast.get('CompilationUnit', {}).get('TypeDeclaration', [])
@@ -165,7 +164,7 @@ def find(identifier):
     static_fields = find_static_fields(ast_data)
 
     # Find test methods and link them to the static fields they access
-    test_dependencies = find_test_methods_and_dependencies(ast_data, static_fields)
+    test_dependencies = find_test_methods_and_dependencies(ast_data, static_fields, identifier)
 
     # Write the results to a file
     write_dependencies_to_file(test_dependencies, identifier)

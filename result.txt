@@ -1,124 +1,124 @@
 Activiti-b11f757a48600e53aaf3fcb7a3ba1ece6c463cb4-activiti-spring-boot-starter
-Total Number of test cases: 53
+Total Number of test cases: 46
 Number of test case after reduction: 35
 Number of matches: 13
 Expected Number of matches: 19
 68.42
 
 fastjson-5c6d6fd471ea1fab59f0df2dd31e0b936806780d-
-Total Number of test cases: 9012
+Total Number of test cases: 5516
 Number of test case after reduction: 1089
 Number of matches: 1
 Expected Number of matches: 169
 0.59
 
 hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-common-project-hadoop-auth
-Total Number of test cases: 192
+Total Number of test cases: 167
 Number of test case after reduction: 69
 Number of matches: 0
 Expected Number of matches: 2
 0.0
 
 hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-hdfs-project-hadoop-hdfs-nfs
-Total Number of test cases: 96
+Total Number of test cases: 86
 Number of test case after reduction: 52
 Number of matches: 25
 Expected Number of matches: 30
 83.33
 
 hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-app
-Total Number of test cases: 739
+Total Number of test cases: 632
 Number of test case after reduction: 549
 Number of matches: 6
 Expected Number of matches: 7
 85.71
 
 hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-core
-Total Number of test cases: 462
+Total Number of test cases: 454
 Number of test case after reduction: 286
 Number of matches: 10
 Expected Number of matches: 10
 100.0
 
 hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-hs
-Total Number of test cases: 315
+Total Number of test cases: 289
 Number of test case after reduction: 248
 Number of matches: 5
 Expected Number of matches: 5
 100.0
 
 dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-cluster
-Total Number of test cases: 189
+Total Number of test cases: 151
 Number of test case after reduction: 10
 Number of matches: 0
 Expected Number of matches: 8
 0.0
 
 dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-common
-Total Number of test cases: 811
+Total Number of test cases: 544
 Number of test case after reduction: 143
 Number of matches: 4
 Expected Number of matches: 4
 100.0
 
 dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-config-dubbo-config-api
-Total Number of test cases: 395
+Total Number of test cases: 281
 Number of test case after reduction: 98
 Number of matches: 38
 Expected Number of matches: 38
 100.0
 
 dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-filter-dubbo-filter-cache
-Total Number of test cases: 18
+Total Number of test cases: 16
 Number of test case after reduction: 0
 Number of matches: 0
 Expected Number of matches: 2
 0.0
 
 dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-rpc-dubbo-rpc-api
-Total Number of test cases: 170
+Total Number of test cases: 59
 Number of test case after reduction: 22
 Number of matches: 0
 Expected Number of matches: 3
 0.0
 
 dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-rpc-dubbo-rpc-dubbo
-Total Number of test cases: 180
+Total Number of test cases: 119
 Number of test case after reduction: 74
 Number of matches: 5
 Expected Number of matches: 9
 55.56
 
 dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-serialization-dubbo-serialization-fst
-Total Number of test cases: 43
+Total Number of test cases: 24
 Number of test case after reduction: 18
 Number of matches: 0
 Expected Number of matches: 14
 0.0
 
 Struts-13d9053050c9e4fb2ef049db6a37d3f6eebf48fa-plugins-portlet
-Total Number of test cases: 91
+Total Number of test cases: 90
 Number of test case after reduction: 0
 Number of matches: 0
 Expected Number of matches: 6
 0.0
 
 c2mon-d80687b119c713dd177a58cf53a997d8cc5ca264-c2mon-server-c2mon-server-elasticsearch
-Total Number of test cases: 28
+Total Number of test cases: 21
 Number of test case after reduction: 0
 Number of matches: 0
 Expected Number of matches: 2
 0.0
 
 cukes-b483e1a8f261b80a66291a42fc455256b0b5059c-cukes-http
-Total Number of test cases: 21
+Total Number of test cases: 18
 Number of test case after reduction: 2
 Number of matches: 0
 Expected Number of matches: 2
 0.0
 
 Achilles-e3099bdce342910951c4862c78751fd81ed4552e-integration-test-2_1
-Total Number of test cases: 251
+Total Number of test cases: 242
 Number of test case after reduction: 36
 Number of matches: 0
 Expected Number of matches: 15
