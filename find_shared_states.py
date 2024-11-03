@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 def in_original_orders(file_path, identifier):
+    return True
     file_path = file_path.replace('/','.').replace('.java','').strip()
     found = False
     with open('io/original/'+identifier, 'r') as f:
@@ -19,31 +20,33 @@ def find_static_fields(ast):
         file_ast = file_data['ast']
         file_path = file_data['path']
 
-        type_declarations = file_ast.get('CompilationUnit', {}).get('TypeDeclaration', [])
-        
-        # Ensure type_declarations is a list
-        if not isinstance(type_declarations, list):
-            type_declarations = [type_declarations]
-        
-        for type_declaration in type_declarations:
-            if isinstance(type_declaration, dict):  # Ensure it's a dictionary
-                field_declarations = type_declaration.get('FieldDeclaration', [])
-                
-                # Ensure field_declarations is a list
-                if not isinstance(field_declarations, list):
-                    field_declarations = [field_declarations]
+        type_declarations = file_ast.get('CompilationUnit', {})
+        if isinstance(type_declarations, dict):
+            type_declarations = type_declarations.get('TypeDeclaration', [])
+            
+            # Ensure type_declarations is a list
+            if not isinstance(type_declarations, list):
+                type_declarations = [type_declarations]
+            
+            for type_declaration in type_declarations:
+                if isinstance(type_declaration, dict):  # Ensure it's a dictionary
+                    field_declarations = type_declaration.get('FieldDeclaration', [])
+                    
+                    # Ensure field_declarations is a list
+                    if not isinstance(field_declarations, list):
+                        field_declarations = [field_declarations]
 
-                for field in field_declarations:
-                    if isinstance(field, dict):  # Ensure we only process dicts
-                        # Check if "static" modifier is present in field declaration
-                        modifiers = field.get('Modifier', [])
-                        if isinstance(modifiers, list) and 'static' in modifiers:
-                            # Get the field name and add it to the static_fields set
-                            variable_name = field.get('VariableDeclarationFragment', None)
-                            if not isinstance(variable_name,list):
-                                variable_name = [variable_name]
-                                for v in variable_name:
-                                    static_fields.add((file_path, v))
+                    for field in field_declarations:
+                        if isinstance(field, dict):  # Ensure we only process dicts
+                            # Check if "static" modifier is present in field declaration
+                            modifiers = field.get('Modifier', [])
+                            if isinstance(modifiers, list) and 'static' in modifiers:
+                                # Get the field name and add it to the static_fields set
+                                variable_name = field.get('VariableDeclarationFragment', None)
+                                if not isinstance(variable_name,list):
+                                    variable_name = [variable_name]
+                                    for v in variable_name:
+                                        static_fields.add((file_path, v))
     
     
     return static_fields
@@ -153,7 +156,9 @@ def print_results(identifier):
         f.write(f"Number of test case after reduction: {len(output_list)}\n")
         f.write(f"Number of matches: {len(matches)}\n")
         f.write(f"Expected Number of matches: {len(expected_list)}\n")
-        f.write(f"{round(len(matches)*100/len(expected_list),2)}"+'\n\n')
+        f.write(f"{round(len(matches)*100/(len(expected_list)+1e-14),2)}"+'\n\n')
+    with open('result.csv', 'a+') as f:
+        f.write(f"{identifier},{total_test_count},{len(output_list)},{len(matches)},{len(expected_list)}\n")
 
 
 

@@ -1,7 +1,7 @@
 from pathlib import Path
-from repos import projects
+from set2 import set2
 
-def read_csv_and_print_matching_columns(file_path, match_column, match_value, column1, column2):
+def read_csv_and_print_matching_columns(file_path, match_column, match_value, column1):
     Path('io/expected_tests').mkdir(parents=True, exist_ok=True)
     
     unique_entries = set()  # To store unique (column1, column2) pairs
@@ -14,7 +14,6 @@ def read_csv_and_print_matching_columns(file_path, match_column, match_value, co
         try:
             match_index = header.index(match_column)
             column1_index = header.index(column1)
-            column2_index = header.index(column2)
         except ValueError as e:
             print(f"Error: {e}")
             return
@@ -34,18 +33,13 @@ def read_csv_and_print_matching_columns(file_path, match_column, match_value, co
                     if values[column1_index] not in unique_entries:
                         unique_entries.add(values[column1_index])
                         out.write(f"{values[column1_index]}\n")
-                    
-                    if values[column2_index] not in unique_entries:
-                        unique_entries.add(values[column2_index])
-                        out.write(f"{values[column2_index]}\n")
 
 # Example usage
-file_path = 'data.csv'  # Replace with your CSV file path
+file_path = 'data/set2/data.csv'  # Replace with your CSV file path
 match_column = 'Identifier'  # The column to match against
-column1 = 'victim/brittle'  # The first column to print
-column2 = 'polluter/state-setter'  # The second column to print
+column1 = 'Test'  # The first column to print
 
-projects = projects
+projects = set2
 
 for project in projects:
-    read_csv_and_print_matching_columns(file_path, match_column, project["identifier"], column1, column2)
+    read_csv_and_print_matching_columns(file_path, match_column, project["identifier"], column1)
