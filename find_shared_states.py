@@ -60,6 +60,7 @@ def find_test_methods_and_dependencies(ast, static_fields, identifier):
     dependencies = {}
 
     test_count = 0
+    class_count = 0
 
     for file_data in ast['folder']['file']:
         file_ast = file_data['ast']
@@ -68,36 +69,42 @@ def find_test_methods_and_dependencies(ast, static_fields, identifier):
         if not in_original_orders(file_path, identifier) : continue
         if not is_test_method(file_path):
             continue
-        type_declarations = file_ast.get('CompilationUnit', {}).get('TypeDeclaration', [])
-        
-        # Ensure type_declarations is a list
-        if not isinstance(type_declarations, list):
-            type_declarations = [type_declarations]
-        
-        for type_declaration in type_declarations:
-            if isinstance(type_declaration, dict):  # Ensure it's a dictionary
-                method_declarations = type_declaration.get('MethodDeclaration', [])
+        class_count = class_count + 1
+        if isinstance(file_ast, dict):
+            type_declarations = file_ast.get('CompilationUnit', {})
+            
+            if isinstance(type_declarations, dict): 
+                type_declarations = type_declarations.get('TypeDeclaration', [])
+                # Ensure type_declarations is a list
+                if not isinstance(type_declarations, list):
+                    type_declarations = [type_declarations]
                 
-                if not isinstance(method_declarations, list):
-                    method_declarations = [method_declarations]  # Ensure it's a list
-
-                for method in method_declarations:
-                    if is_test_method(file_path=file_path) : 
-                        test_count = test_count + 1
+                for type_declaration in type_declarations:
+                    if isinstance(type_declaration, dict):  # Ensure it's a dictionary
+                        method_declarations = type_declaration.get('MethodDeclaration', [])
                         
-                    if isinstance(method, dict):  # Ensure method is a dictionary
-                        method_name = method.get('SimpleName', None)
+                        if not isinstance(method_declarations, list):
+                            method_declarations = [method_declarations]  # Ensure it's a list
 
-                        # Key will now include file path and method name
-                        key = f"{file_path}: {method_name}"
-                        dependencies[key] = []
+                        for method in method_declarations:
+                            if is_test_method(file_path=file_path) : 
+                                test_count = test_count + 1
+                                
+                            if isinstance(method, dict):  # Ensure method is a dictionary
+                                method_name = method.get('SimpleName', None)
 
-                        # Check for field accesses in the method body (mock the logic)
-                        for field_path, field_name in static_fields:
-                            if file_path in field_path:
-                                dependencies[key].append(f"{field_path}: {field_name}")
+                                # Key will now include file path and method name
+                                key = f"{file_path}: {method_name}"
+                                dependencies[key] = []
+
+                                # Check for field accesses in the method body (mock the logic)
+                                for field_path, field_name in static_fields:
+                                    if file_path in field_path:
+                                        dependencies[key].append(f"{field_path}: {field_name}")
     global total_test_count
     total_test_count = test_count
+    global total_class_count
+    total_class_count = class_count
     return dependencies
 
 def write_dependencies_to_file(dependencies, identifier):
@@ -152,13 +159,14 @@ def print_results(identifier):
 
     with open('result.txt', 'a+') as f:
         f.write(f"{identifier}\n")
+        f.write(f"Total Number of test classes: {total_class_count}\n")
         f.write(f"Total Number of test cases: {total_test_count}\n")
         f.write(f"Number of test case after reduction: {len(output_list)}\n")
         f.write(f"Number of matches: {len(matches)}\n")
         f.write(f"Expected Number of matches: {len(expected_list)}\n")
         f.write(f"{round(len(matches)*100/(len(expected_list)+1e-14),2)}"+'\n\n')
     with open('result.csv', 'a+') as f:
-        f.write(f"{identifier},{total_test_count},{len(output_list)},{len(matches)},{len(expected_list)}\n")
+        f.write(f"{identifier},{total_test_count},{len(output_list)},{len(matches)},{len(expected_list)},{total_class_count}\n")
 
 
 
