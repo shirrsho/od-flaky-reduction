@@ -21,18 +21,20 @@ def read_csv_and_print_matching_columns(file_path, match_column, match_value, co
         output_path = f'io/expected_tests/{match_value}'
         
         with open(output_path, 'w') as out:
-            # Read each subsequent line in the file
-            for line in file:
-                # Split the line into values
-                values = line.strip().split(',')
-                
-                # Check if the match value in the specified column matches
-                if values[match_index] == match_value:
+            with open('od.csv', 'a+') as od:
+                # Read each subsequent line in the file
+                for line in file:
+                    # Split the line into values
+                    values = line.strip().split(',')
                     
-                    # Add to the set if it's unique
-                    if values[column1_index] not in unique_entries:
-                        unique_entries.add(values[column1_index])
-                        out.write(f"{values[column1_index]}\n")
+                    # Check if the match value in the specified column matches
+                    if values[match_index] == match_value:
+                        
+                        # Add to the set if it's unique
+                        if values[column1_index] not in unique_entries:
+                            unique_entries.add(values[column1_index])
+                            od.write(f"{values[header.index("Project URL")]},{values[header.index("SHA Detected")]},{values[header.index("Module Path")]},{values[column1_index]}\n")
+                            out.write(f"{values[column1_index]}\n")
 
 # Example usage
 file_path = 'data/set2/data.csv'  # Replace with your CSV file path

@@ -22,22 +22,24 @@ def read_csv_and_print_matching_columns(file_path, match_column, match_value, co
         output_path = f'io/expected_tests/{match_value}'
         
         with open(output_path, 'w') as out:
-            # Read each subsequent line in the file
-            for line in file:
-                # Split the line into values
-                values = line.strip().split(',')
-                
-                # Check if the match value in the specified column matches
-                if values[match_index] == match_value:
+            with open('od.csv', 'a+') as od:
+                # Read each subsequent line in the file
+                for line in file:
+                    # Split the line into values
+                    values = line.strip().split(',')
                     
-                    # Add to the set if it's unique
-                    if values[column1_index] not in unique_entries:
-                        unique_entries.add(values[column1_index])
-                        out.write(f"{values[column1_index]}\n")
-                    
-                    # if values[column2_index] not in unique_entries:
-                    #     unique_entries.add(values[column2_index])
-                    #     out.write(f"{values[column2_index]}\n")
+                    # Check if the match value in the specified column matches
+                    if values[match_index] == match_value:
+                        
+                        # Add to the set if it's unique
+                        if values[column1_index] not in unique_entries:
+                            unique_entries.add(values[column1_index])
+                            od.write(f"{values[header.index("github_slug")]},{values[header.index("sha")]},{values[header.index("module")]},{values[column1_index]}\n")
+                            out.write(f"{values[column1_index]}\n")
+                        
+                        # if values[column2_index] not in unique_entries:
+                        #     unique_entries.add(values[column2_index])
+                        #     out.write(f"{values[column2_index]}\n")
 
 # Example usage
 file_path = 'data/set1/data.csv'  # Replace with your CSV file path

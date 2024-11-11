@@ -1,31 +1,15 @@
 Activiti-b11f757a48600e53aaf3fcb7a3ba1ece6c463cb4-activiti-spring-boot-starter
 Total Number of test classes: 13
 Total Number of test cases: 53
-Number of test case after reduction: 70
+Number of test case after reduction: 35
 Number of matches: 10
 Expected Number of matches: 16
 62.5
 
-fastjson-5c6d6fd471ea1fab59f0df2dd31e0b936806780d-
-Total Number of test classes: 2658
-Total Number of test cases: 9012
-Number of test case after reduction: 2426
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
-hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-common-project-hadoop-auth
-Total Number of test classes: 27
-Total Number of test cases: 192
-Number of test case after reduction: 147
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
 hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-hdfs-project-hadoop-hdfs-nfs
 Total Number of test classes: 14
 Total Number of test cases: 96
-Number of test case after reduction: 117
+Number of test case after reduction: 52
 Number of matches: 25
 Expected Number of matches: 28
 89.29
@@ -33,7 +17,7 @@ Expected Number of matches: 28
 hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-app
 Total Number of test classes: 59
 Total Number of test cases: 739
-Number of test case after reduction: 1172
+Number of test case after reduction: 549
 Number of matches: 4
 Expected Number of matches: 4
 100.0
@@ -41,7 +25,7 @@ Expected Number of matches: 4
 hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-core
 Total Number of test classes: 61
 Total Number of test cases: 462
-Number of test case after reduction: 592
+Number of test case after reduction: 286
 Number of matches: 5
 Expected Number of matches: 5
 100.0
@@ -49,23 +33,15 @@ Expected Number of matches: 5
 hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-hadoop-mapreduce-project-hadoop-mapreduce-client-hadoop-mapreduce-client-hs
 Total Number of test classes: 30
 Total Number of test cases: 315
-Number of test case after reduction: 507
+Number of test case after reduction: 248
 Number of matches: 2
 Expected Number of matches: 2
 100.0
 
-dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-cluster
-Total Number of test classes: 34
-Total Number of test cases: 189
-Number of test case after reduction: 70
-Number of matches: 1
-Expected Number of matches: 3
-33.33
-
 dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-common
 Total Number of test classes: 159
 Total Number of test cases: 811
-Number of test case after reduction: 364
+Number of test case after reduction: 143
 Number of matches: 1
 Expected Number of matches: 1
 100.0
@@ -73,223 +49,31 @@ Expected Number of matches: 1
 dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-config-dubbo-config-api
 Total Number of test classes: 64
 Total Number of test cases: 395
-Number of test case after reduction: 196
+Number of test case after reduction: 98
 Number of matches: 37
 Expected Number of matches: 37
 100.0
 
-dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-filter-dubbo-filter-cache
-Total Number of test classes: 6
-Total Number of test cases: 18
-Number of test case after reduction: 7
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-rpc-dubbo-rpc-api
-Total Number of test classes: 42
-Total Number of test cases: 170
-Number of test case after reduction: 44
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
-dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-rpc-dubbo-rpc-dubbo
-Total Number of test classes: 27
-Total Number of test cases: 180
-Number of test case after reduction: 154
-Number of matches: 1
-Expected Number of matches: 2
-50.0
-
-dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-dubbo-serialization-dubbo-serialization-fst
-Total Number of test classes: 6
-Total Number of test cases: 43
-Number of test case after reduction: 36
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-Struts-13d9053050c9e4fb2ef049db6a37d3f6eebf48fa-plugins-portlet
-Total Number of test classes: 13
-Total Number of test cases: 91
-Number of test case after reduction: 22
-Number of matches: 0
-Expected Number of matches: 4
-0.0
-
-c2mon-d80687b119c713dd177a58cf53a997d8cc5ca264-c2mon-server-c2mon-server-elasticsearch
-Total Number of test classes: 16
-Total Number of test cases: 28
-Number of test case after reduction: 0
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-cukes-b483e1a8f261b80a66291a42fc455256b0b5059c-cukes-http
-Total Number of test classes: 6
-Total Number of test cases: 21
-Number of test case after reduction: 4
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-Achilles-e3099bdce342910951c4862c78751fd81ed4552e-integration-test-2_1
-Total Number of test classes: 41
-Total Number of test cases: 251
-Number of test case after reduction: 72
-Number of matches: 0
-Expected Number of matches: 9
-0.0
-
-Achilles-e3099bdce342910951c4862c78751fd81ed4552e-integration-test-2_2
-Total Number of test classes: 4
-Total Number of test cases: 24
-Number of test case after reduction: 0
-Number of matches: 0
-Expected Number of matches: 7
-0.0
-
-Achilles-e3099bdce342910951c4862c78751fd81ed4552e-integration-test-3_10
-Total Number of test classes: 4
-Total Number of test cases: 25
-Number of test case after reduction: 0
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
-Achilles-e3099bdce342910951c4862c78751fd81ed4552e-integration-test-3_7
-Total Number of test classes: 1
-Total Number of test cases: 6
-Number of test case after reduction: 0
-Number of matches: 0
-Expected Number of matches: 6
-0.0
-
-dropwizard-07dfaed697427e208d65049f80a5d1949833b7cd-dropwizard-logging
-Total Number of test classes: 22
-Total Number of test cases: 127
-Number of test case after reduction: 54
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-elastic-job-lite-b022898ef1b8c984e17efb2a422ee45f6b13e46e-elastic-job-lite-core
-Total Number of test classes: 153
-Total Number of test cases: 688
-Number of test case after reduction: 219
-Number of matches: 1
-Expected Number of matches: 3
-33.33
-
-hsac-fitnesse-fixtures-a64c18d9c4bac8271275c7b089d40be20f0604b5-
-Total Number of test classes: 56
-Total Number of test cases: 297
-Number of test case after reduction: 223
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-spring-data-ebean-dd11b97654982403b50dd1d5369cadad71fce410-
-Total Number of test classes: 13
-Total Number of test cases: 79
-Number of test case after reduction: 10
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-jhipster-registry-00db36611da5fc7aaf9d5372aa90f2465d80c0c4-
-Total Number of test classes: 22
-Total Number of test cases: 71
-Number of test case after reduction: 39
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
 http-request-2d62a3e9da726942a93cf16b6e91c0187e6c0136-lib
 Total Number of test classes: 3
 Total Number of test cases: 168
-Number of test case after reduction: 332
+Number of test case after reduction: 166
 Number of matches: 25
 Expected Number of matches: 25
 100.0
 
-marine-api-af0003847db9ba822f67d4f1dceb8de3fe63250a-
-Total Number of test classes: 75
-Total Number of test cases: 1000
-Number of test case after reduction: 1428
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
-openpojo-9badbcc4593e797accfed5e51bec9f2b843f0f67-
-Total Number of test classes: 501
-Total Number of test cases: 1765
-Number of test case after reduction: 648
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
 spring-boot-daa3d457b71896a758995c264977bdd1414ee4d4-spring-boot-project-spring-boot-actuator-autoconfigure
 Total Number of test classes: 180
 Total Number of test cases: 905
-Number of test case after reduction: 218
+Number of test case after reduction: 109
 Number of matches: 8
 Expected Number of matches: 8
 100.0
 
-spring-boot-daa3d457b71896a758995c264977bdd1414ee4d4-spring-boot-project-spring-boot
-Total Number of test classes: 282
-Total Number of test cases: 2488
-Number of test case after reduction: 833
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
-spring-boot-daa3d457b71896a758995c264977bdd1414ee4d4-spring-boot-project-spring-boot-test-autoconfigure
-Total Number of test classes: 286
-Total Number of test cases: 592
-Number of test case after reduction: 166
-Number of matches: 4
-Expected Number of matches: 4
-100.0
-
-spring-boot-daa3d457b71896a758995c264977bdd1414ee4d4-spring-boot-project-spring-boot-test
-Total Number of test classes: 230
-Total Number of test cases: 1275
-Number of test case after reduction: 786
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-spring-data-envers-5637994be37747e82b2d6d5b34555e2bee791fe6-
-Total Number of test classes: 12
-Total Number of test cases: 24
-Number of test case after reduction: 10
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-spring-ws-e8d89c9eb0929dda304174729c9c69fb29f448eb-spring-ws-core
-Total Number of test classes: 188
-Total Number of test cases: 981
-Number of test case after reduction: 346
-Number of matches: 0
-Expected Number of matches: 15
-0.0
-
-spring-ws-e8d89c9eb0929dda304174729c9c69fb29f448eb-spring-ws-security
-Total Number of test classes: 60
-Total Number of test cases: 174
-Number of test case after reduction: 12
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
 aismessages-7b0c4c708b6bb9a6da3d5737bcad1857ade8a931-
 Total Number of test classes: 19
 Total Number of test cases: 49
-Number of test case after reduction: 14
+Number of test case after reduction: 7
 Number of matches: 2
 Expected Number of matches: 2
 100.0
@@ -297,7 +81,7 @@ Expected Number of matches: 2
 unix4j-367da7d262e682a08577cdf19ebbbdd8a46870fe-unix4j-core-unix4j-command
 Total Number of test classes: 33
 Total Number of test cases: 367
-Number of test case after reduction: 394
+Number of test case after reduction: 173
 Number of matches: 1
 Expected Number of matches: 1
 100.0
@@ -305,7 +89,7 @@ Expected Number of matches: 1
 admiral-e4b02936cc7d4ff2714e7231db0c4373ba5d48a2-compute
 Total Number of test classes: 91
 Total Number of test cases: 926
-Number of test case after reduction: 985
+Number of test case after reduction: 424
 Number of matches: 1
 Expected Number of matches: 1
 100.0
@@ -313,191 +97,31 @@ Expected Number of matches: 1
 admiral-e4b02936cc7d4ff2714e7231db0c4373ba5d48a2-request
 Total Number of test classes: 54
 Total Number of test cases: 563
-Number of test case after reduction: 360
+Number of test case after reduction: 171
 Number of matches: 1
 Expected Number of matches: 1
 100.0
-
-wikidata-toolkit-20de6f7f12319f54eb962ff6e8357b3f5695d54d-wdtk-dumpfiles
-Total Number of test classes: 9
-Total Number of test cases: 67
-Number of test case after reduction: 0
-Number of matches: 0
-Expected Number of matches: 3
-0.0
-
-wikidata-toolkit-20de6f7f12319f54eb962ff6e8357b3f5695d54d-wdtk-util
-Total Number of test classes: 5
-Total Number of test cases: 25
-Number of test case after reduction: 10
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
-wildfly-b19048b72669fc0e96665b1b125dc1fda21f5993-naming
-Total Number of test classes: 12
-Total Number of test cases: 116
-Number of test case after reduction: 74
-Number of matches: 31
-Expected Number of matches: 44
-70.45
-
-wildfly-b19048b72669fc0e96665b1b125dc1fda21f5993-security-subsystem
-Total Number of test classes: 12
-Total Number of test cases: 72
-Number of test case after reduction: 78
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-wro4j-185ab607f1d649ca38b4a772831ee754cd4649fb-wro4j-core
-Total Number of test classes: 140
-Total Number of test cases: 1323
-Number of test case after reduction: 1380
-Number of matches: 15
-Expected Number of matches: 15
-100.0
-
-carbon-apimgt-a82213e40e7e6aa529341fdd1d1c3de776949e64-components-apimgt-org.wso2.carbon.apimgt.core
-Total Number of test classes: 70
-Total Number of test cases: 888
-Number of test case after reduction: 1376
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-riptide-8277e11fc069d8e24df0d233ef2577cc75659b75-riptide-spring-boot-starter
-Total Number of test classes: 30
-Total Number of test cases: 54
-Number of test case after reduction: 14
-Number of matches: 0
-Expected Number of matches: 2
-0.0
 
 easyexcel-756f16e42fbd7bc5c7fa18426cbc02fc81a42057-
 Total Number of test classes: 156
 Total Number of test cases: 500
-Number of test case after reduction: 828
+Number of test case after reduction: 414
 Number of matches: 2
 Expected Number of matches: 2
 100.0
 
-fastjson-e05e9c5e4be580691cc55a59f3256595393203a1-
-Total Number of test classes: 2496
-Total Number of test cases: 8568
-Number of test case after reduction: 2056
-Number of matches: 1
-Expected Number of matches: 11
-9.09
-
-Mapper-3c0b3307011fad53f811e08d05147d94fc6c0d67-se
-Total Number of test classes: 141
-Total Number of test cases: 549
-Number of test case after reduction: 248
-Number of matches: 0
-Expected Number of matches: 4
-0.0
-
-nacos-525672272ecb00cd769a13c7b21a8e51cf873f25-i
-Total Number of test classes: 7
-Total Number of test cases: 26
-Number of test case after reduction: 8
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-Sentinel-7e2fa454fa0546c04142a268454faabac79370d0-ntinel-core
-Total Number of test classes: 62
-Total Number of test cases: 294
-Number of test case after reduction: 14
-Number of matches: 0
-Expected Number of matches: 3
-0.0
-
-alien4cloud-eb57d0feca6c37e0a4aafc3feef494e43e02ecda-ien4cloud-security
-Total Number of test classes: 6
-Total Number of test cases: 20
-Number of test case after reduction: 0
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-archiva-292dbe1bb4323dd299d36b78f37d9c1d55c889f8-chiva-modules-archiva-base-archiva-repository-layer
-Total Number of test classes: 19
-Total Number of test cases: 251
-Number of test case after reduction: 88
-Number of matches: 0
-Expected Number of matches: 10
-0.0
-
-cxf-69925893ed0e8a8fdfe1164b4e097a5cf5524027-re
-Total Number of test classes: 120
-Total Number of test cases: 816
-Number of test case after reduction: 400
-Number of matches: 0
-Expected Number of matches: 10
-0.0
-
-dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-bbo-serialization-dubbo-serialization-fst
-Total Number of test classes: 6
-Total Number of test cases: 43
-Number of test case after reduction: 36
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
 dubbo-1f84cdcfede5ec9843ecebf39a25d9b995b8098b-bbo-common
 Total Number of test classes: 280
 Total Number of test cases: 1367
-Number of test case after reduction: 540
+Number of test case after reduction: 270
 Number of matches: 9
 Expected Number of matches: 10
 90.0
 
-dubbo-5349c13a36d277a090e1dc68fbe7c3b46d78fc90-bbo-common
-Total Number of test classes: 322
-Total Number of test cases: 1558
-Number of test case after reduction: 558
-Number of matches: 0
-Expected Number of matches: 19
-0.0
-
-dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-bbo-registry-dubbo-registry-default
-Total Number of test classes: 9
-Total Number of test cases: 154
-Number of test case after reduction: 128
-Number of matches: 0
-Expected Number of matches: 3
-0.0
-
-dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-bbo-cluster
-Total Number of test classes: 34
-Total Number of test cases: 189
-Number of test case after reduction: 20
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
-dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-bbo-rpc-dubbo-rpc-dubbo
-Total Number of test classes: 27
-Total Number of test cases: 180
-Number of test case after reduction: 148
-Number of matches: 3
-Expected Number of matches: 4
-75.0
-
-dubbo-737f7a7ea67832d7f17517326fb2491d0a086dd7-bbo-rpc-dubbo-rpc-api
-Total Number of test classes: 42
-Total Number of test cases: 170
-Number of test case after reduction: 44
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
 hadoop-cc2babc1f75c93bf89a8f10da525f944c15d02ea-doop-hdfs-project-hadoop-hdfs-nfs
 Total Number of test classes: 14
 Total Number of test cases: 96
-Number of test case after reduction: 104
+Number of test case after reduction: 52
 Number of matches: 20
 Expected Number of matches: 20
 100.0
@@ -505,7 +129,7 @@ Expected Number of matches: 20
 hadoop-a585a73c3e02ac62350c136643a5e7f6095a3dbb-doop-hdfs-project-hadoop-hdfs-nfs
 Total Number of test classes: 14
 Total Number of test cases: 96
-Number of test case after reduction: 104
+Number of test case after reduction: 52
 Number of matches: 1
 Expected Number of matches: 1
 100.0
@@ -513,234 +137,50 @@ Expected Number of matches: 1
 incubator-ratis-bc9d7615d8ffa30e79a36b9fd1950af38f0f6a49-tis-server
 Total Number of test classes: 40
 Total Number of test cases: 428
-Number of test case after reduction: 592
+Number of test case after reduction: 296
 Number of matches: 2
 Expected Number of matches: 2
 100.0
 
-karaf-b368a87cba0f0e235d5dae72fd6c3559b50fb75c-
-Total Number of test classes: 267
-Total Number of test cases: 1279
-Number of test case after reduction: 490
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-shardingsphere-elasticjob-b022898ef1b8c984e17efb2a422ee45f6b13e46e-astic-job-lite-core
-Total Number of test classes: 153
-Total Number of test cases: 688
-Number of test case after reduction: 206
-Number of matches: 1
-Expected Number of matches: 6
-16.67
-
-shenyu-10375c5204c67f9889235f19fe2d6e8eb0438a5a-enyu-client-shenyu-client-http-shenyu-client-springmvc
-Total Number of test classes: 7
-Total Number of test cases: 13
-Number of test case after reduction: 0
-Number of matches: 0
-Expected Number of matches: 4
-0.0
-
-skywalking-edf0bce37f682c093d1ea5bcca0a6d2d1ecc2cc4-m-commons-apm-datacarrier
-Total Number of test classes: 13
-Total Number of test cases: 59
-Number of test case after reduction: 46
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
-Struts-13d9053050c9e4fb2ef049db6a37d3f6eebf48fa-ugins-portlet
-Total Number of test classes: 13
-Total Number of test cases: 91
-Number of test case after reduction: 0
-Number of matches: 0
-Expected Number of matches: 4
-0.0
-
 biojava-65ad15fe58dcedd258fee1c14505e424c8536efc-ojava-structure
 Total Number of test classes: 100
 Total Number of test cases: 492
-Number of test case after reduction: 262
+Number of test case after reduction: 131
 Number of matches: 1
 Expected Number of matches: 1
 100.0
-
-tessera-ecdd1a2ce6412c11a8ae722d7a4527a4a66da688-ssera-partyinfo
-Total Number of test classes: 23
-Total Number of test cases: 122
-Number of test case after reduction: 44
-Number of matches: 0
-Expected Number of matches: 3
-0.0
-
-tessera-ecdd1a2ce6412c11a8ae722d7a4527a4a66da688-lipselink-utils
-Total Number of test classes: 2
-Total Number of test cases: 13
-Number of test case after reduction: 0
-Number of matches: 0
-Expected Number of matches: 3
-0.0
-
-cukes-b483e1a8f261b80a66291a42fc455256b0b5059c-kes-http
-Total Number of test classes: 6
-Total Number of test cases: 21
-Number of test case after reduction: 4
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-hutool-12969f248329f81f76eb5bece8c718ac1c63f7b1-tool-core
-Total Number of test classes: 180
-Total Number of test cases: 1122
-Number of test case after reduction: 76
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
-hutool-12969f248329f81f76eb5bece8c718ac1c63f7b1-tool-json
-Total Number of test classes: 58
-Total Number of test cases: 212
-Number of test case after reduction: 148
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-dropwizard-07dfaed697427e208d65049f80a5d1949833b7cd-opwizard-logging
-Total Number of test classes: 22
-Total Number of test cases: 127
-Number of test case after reduction: 24
-Number of matches: 0
-Expected Number of matches: 1
-0.0
 
 jackson-databind-9b11650a6c3fee9ef9e3fb264d2244f65affc2ee-
 Total Number of test classes: 612
 Total Number of test cases: 3524
-Number of test case after reduction: 1294
+Number of test case after reduction: 647
 Number of matches: 1
 Expected Number of matches: 1
 100.0
-
-jackson-dataformat-xml-2d08f8d0b0248a00c2c79b9a07e936b3287edb07-
-Total Number of test classes: 129
-Total Number of test cases: 434
-Number of test case after reduction: 126
-Number of matches: 0
-Expected Number of matches: 8
-0.0
-
-hsac-fitnesse-fixtures-a64c18d9c4bac8271275c7b089d40be20f0604b5-
-Total Number of test classes: 56
-Total Number of test cases: 297
-Number of test case after reduction: 223
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-spring-data-ebean-dd11b97654982403b50dd1d5369cadad71fce410-
-Total Number of test classes: 13
-Total Number of test cases: 79
-Number of test case after reduction: 10
-Number of matches: 0
-Expected Number of matches: 1
-0.0
 
 jnr-posix-dbda72ce198a8dd766c30c591d63d726d2a28a7c-
 Total Number of test classes: 26
 Total Number of test cases: 183
-Number of test case after reduction: 278
+Number of test case after reduction: 139
 Number of matches: 6
 Expected Number of matches: 6
 100.0
 
-marine-api-af0003847db9ba822f67d4f1dceb8de3fe63250a-
-Total Number of test classes: 75
-Total Number of test cases: 1000
-Number of test case after reduction: 1428
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
-java-e19a0ecbc9af258c43b486843df139c8ec8f117e-ring
-Total Number of test classes: 6
-Total Number of test cases: 7
-Number of test case after reduction: 2
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-light-4j-fcded1683dcbd41a968e221494778aa6b71e7428-nsul
-Total Number of test classes: 7
-Total Number of test cases: 39
-Number of test case after reduction: 6
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
 light-4j-fcded1683dcbd41a968e221494778aa6b71e7428-rrelation
 Total Number of test classes: 1
 Total Number of test cases: 6
-Number of test case after reduction: 12
+Number of test case after reduction: 6
 Number of matches: 1
 Expected Number of matches: 1
 100.0
-
-light-4j-fcded1683dcbd41a968e221494778aa6b71e7428-ndler
-Total Number of test classes: 5
-Total Number of test cases: 17
-Number of test case after reduction: 0
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-light-4j-fcded1683dcbd41a968e221494778aa6b71e7428-rtal-registry
-Total Number of test classes: 7
-Total Number of test cases: 30
-Number of test case after reduction: 6
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
-light-4j-fcded1683dcbd41a968e221494778aa6b71e7428-trics
-Total Number of test classes: 37
-Total Number of test cases: 277
-Number of test case after reduction: 108
-Number of matches: 0
-Expected Number of matches: 2
-0.0
 
 hippo4j-cf854b3cb3c47fd339421e5a46a3ae3229c53829-fra-common
 Total Number of test classes: 40
 Total Number of test cases: 196
-Number of test case after reduction: 76
+Number of test case after reduction: 38
 Number of matches: 1
 Expected Number of matches: 1
 100.0
-
-openpojo-9badbcc4593e797accfed5e51bec9f2b843f0f67-
-Total Number of test classes: 501
-Total Number of test cases: 1765
-Number of test case after reduction: 648
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-junit-quickcheck-9361b6dae25b193782604d071754eb7fc566390a-ava
-Total Number of test classes: 5
-Total Number of test cases: 15
-Number of test case after reduction: 12
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-junit-quickcheck-9361b6dae25b193782604d071754eb7fc566390a-re
-Total Number of test classes: 120
-Total Number of test cases: 693
-Number of test case after reduction: 180
-Number of matches: 0
-Expected Number of matches: 1
-0.0
 
 secor-0927a127e3014ee494c97f8c0c25dafe9cf5ac27-
 Total Number of test classes: 35
@@ -750,50 +190,10 @@ Number of matches: 2
 Expected Number of matches: 2
 100.0
 
-querydsl-2bf234caf78549813a1e0f44d9c30ecc5ef734e3-erydsl-hibernate-search
-Total Number of test classes: 5
-Total Number of test cases: 33
-Number of test case after reduction: 16
-Number of matches: 0
-Expected Number of matches: 6
-0.0
-
-rest-assured-bbede9fff77d4f1b751cdada0bdf8fe8d928919a-ring-web-test-client
-Total Number of test classes: 44
-Total Number of test cases: 177
-Number of test case after reduction: 13
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-rrd4j-5e0c9c7e138167388721a0620b95526e89fd6059-
-Total Number of test classes: 47
-Total Number of test cases: 413
-Number of test case after reduction: 211
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-spring-data-envers-5637994be37747e82b2d6d5b34555e2bee791fe6-
-Total Number of test classes: 12
-Total Number of test cases: 24
-Number of test case after reduction: 10
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-spring-ws-e8d89c9eb0929dda304174729c9c69fb29f448eb-ring-ws-security
-Total Number of test classes: 60
-Total Number of test cases: 174
-Number of test case after reduction: 6
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
 aismessages-7b0c4c708b6bb9a6da3d5737bcad1857ade8a931-
 Total Number of test classes: 19
 Total Number of test cases: 49
-Number of test case after reduction: 14
+Number of test case after reduction: 7
 Number of matches: 2
 Expected Number of matches: 2
 100.0
@@ -814,38 +214,6 @@ Number of matches: 1
 Expected Number of matches: 1
 100.0
 
-flow-26aacd3cdf51c7e0a18ae21318d366ce7f91be8a-ow-data
-Total Number of test classes: 72
-Total Number of test cases: 824
-Number of test case after reduction: 124
-Number of matches: 0
-Expected Number of matches: 1
-0.0
-
-wikidata-toolkit-20de6f7f12319f54eb962ff6e8357b3f5695d54d-tk-dumpfiles
-Total Number of test classes: 9
-Total Number of test cases: 67
-Number of test case after reduction: 0
-Number of matches: 0
-Expected Number of matches: 3
-0.0
-
-wikidata-toolkit-20de6f7f12319f54eb962ff6e8357b3f5695d54d-tk-util
-Total Number of test classes: 5
-Total Number of test cases: 25
-Number of test case after reduction: 5
-Number of matches: 0
-Expected Number of matches: 2
-0.0
-
-wildfly-b19048b72669fc0e96665b1b125dc1fda21f5993-ming
-Total Number of test classes: 12
-Total Number of test cases: 116
-Number of test case after reduction: 15
-Number of matches: 4
-Expected Number of matches: 44
-9.09
-
 jboot-4bffb4dff4ce5190917491a1b68f79efbfe99650-
 Total Number of test classes: 112
 Total Number of test cases: 250
@@ -853,12 +221,4 @@ Number of test case after reduction: 13
 Number of matches: 4
 Expected Number of matches: 6
 66.67
-
-riptide-8277e11fc069d8e24df0d233ef2577cc75659b75-ptide-spring-boot-starter
-Total Number of test classes: 30
-Total Number of test cases: 54
-Number of test case after reduction: 7
-Number of matches: 0
-Expected Number of matches: 1
-0.0
 

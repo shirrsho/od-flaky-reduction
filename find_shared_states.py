@@ -97,7 +97,6 @@ def find_test_methods_and_dependencies(ast, static_fields, identifier):
                                 key = f"{file_path}: {method_name}"
                                 dependencies[key] = []
 
-                                # Check for field accesses in the method body (mock the logic)
                                 for field_path, field_name in static_fields:
                                     if file_path in field_path:
                                         dependencies[key].append(f"{field_path}: {field_name}")
