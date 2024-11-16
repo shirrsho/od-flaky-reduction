@@ -1,6 +1,4 @@
 __pycache__/
 io/
 ASTExtractor-0.5.jar
-ast.json
-shared_states_dependencies.txt
-temp.py
+javaparser-core-3.23.1.jar

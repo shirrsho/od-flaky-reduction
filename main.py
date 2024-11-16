@@ -11,7 +11,6 @@ def write_static_fields_to_file(static_fields, identifier):
     """Write all found static fields to an output file."""
     data = json.loads(static_fields)
 
-    # Create the directory if it doesn't exist
     Path('io/ast').mkdir(parents=True, exist_ok=True)
 
     
@@ -23,7 +22,6 @@ def gen_ast(project_dir, output_file):
     
     ast = ast_extractor.parse_folder(project_dir, 'JSON')
     # print(ast)
-    # Write the results to the output file
     write_static_fields_to_file(ast, output_file)
     print(f"Shared static fields written to {output_file}")
     return ast

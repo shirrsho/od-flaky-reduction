@@ -3,14 +3,6 @@ from pathlib import Path
 
 def in_original_orders(file_path, identifier):
     return True
-    file_path = file_path.replace('/','.').replace('.java','').strip()
-    found = False
-    with open('io/original/'+identifier, 'r') as f:
-        lines = f.readlines()
-        for line in lines:
-            if file_path in line.strip().rsplit('.', 1)[0] or line.strip().rsplit('.', 1)[0] in file_path :
-                found = True
-    return found
 
 def find_static_fields(ast):
     """Finds all static fields in the given AST."""
@@ -24,7 +16,6 @@ def find_static_fields(ast):
         if isinstance(type_declarations, dict):
             type_declarations = type_declarations.get('TypeDeclaration', [])
             
-            # Ensure type_declarations is a list
             if not isinstance(type_declarations, list):
                 type_declarations = [type_declarations]
             
@@ -38,10 +29,8 @@ def find_static_fields(ast):
 
                     for field in field_declarations:
                         if isinstance(field, dict):  # Ensure we only process dicts
-                            # Check if "static" modifier is present in field declaration
                             modifiers = field.get('Modifier', [])
                             if isinstance(modifiers, list) and 'static' in modifiers:
-                                # Get the field name and add it to the static_fields set
                                 variable_name = field.get('VariableDeclarationFragment', None)
                                 if not isinstance(variable_name,list):
                                     variable_name = [variable_name]
@@ -93,7 +82,6 @@ def find_test_methods_and_dependencies(ast, static_fields, identifier):
                             if isinstance(method, dict):  # Ensure method is a dictionary
                                 method_name = method.get('SimpleName', None)
 
-                                # Key will now include file path and method name
                                 key = f"{file_path}: {method_name}"
                                 dependencies[key] = []
 
@@ -116,7 +104,7 @@ def write_dependencies_to_file(dependencies, identifier):
         else:
             with open('io/found_tests/'+identifier, 'a+') as ff:
                 for test_method, shared_states in dependencies.items():
-                    f.write(f"Test: {test_method}\n")  # Now test method includes file path
+                    f.write(f"Test: {test_method}\n")
                     if shared_states:
                         f.write("Shared States:\n")
                         ff.write(f"{test_method.replace('.java','').replace(' ','').replace('/','.').replace(':','.')}\n")
@@ -126,35 +114,32 @@ def write_dependencies_to_file(dependencies, identifier):
     # print(f"Tests written to {'io/found_tests/'+identifier}")
 
 def print_results(identifier):
-    expected_set = set()  # Using set to ensure uniqueness
+    expected_set = set()
     output_set = set()
 
-    # Read the 'expected' file line by line using readline
     with open('io/expected_tests/'+identifier, 'r') as e:
         while True:
-            line = e.readline().strip()  # Read line and remove any extra whitespace or newlines
+            line = e.readline().strip()
             if not line:
-                break  # Stop if we reach the end of the file
-            expected_set.add(line)  # Add line to the set (automatically handles uniqueness)
+                break
+            expected_set.add(line)
 
-    # Read the 'output' file line by line using readline
     with open('io/found_tests/'+identifier, 'r') as o:
         while True:
-            line = o.readline().strip()  # Read line and remove any extra whitespace or newlines
+            line = o.readline().strip()
             if not line:
-                break  # Stop if we reach the end of the file
-            output_set.add(line)  # Add line to the set (automatically handles uniqueness)
+                break
+            output_set.add(line)
 
-    # Convert sets back to lists
     expected_list = list(expected_set)
     output_list = list(output_set)
     
     matches = []
     for expected in expected_list:
         for output in output_list:
-            if expected in output:  # Substring check
+            if expected in output:
                 matches.append(expected)
-                break  # Avoid counting the same expected multiple times
+                break
 
     with open('result.txt', 'a+') as f:
         f.write(f"{identifier}\n")
@@ -172,12 +157,9 @@ def print_results(identifier):
 def find(identifier):
     with open('io/ast/'+identifier+'.json', 'r') as file:
         ast_data = json.load(file)
-    # Process the AST to find shared static fields
     static_fields = find_static_fields(ast_data)
 
-    # Find test methods and link them to the static fields they access
     test_dependencies = find_test_methods_and_dependencies(ast_data, static_fields, identifier)
 
-    # Write the results to a file
     write_dependencies_to_file(test_dependencies, identifier)
     print_results(identifier)
