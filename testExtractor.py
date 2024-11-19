@@ -100,9 +100,9 @@ def write_start_and_end(filename, start="{", end="}"):
 if __name__ == "__main__":
     projects = projects
 
+    Path('io/new_tests/').mkdir(parents=True, exist_ok=True)
     for project in projects:
         output_file = f"io/new_tests/{project['identifier']}.json"
-        Path('io/new_tests/').mkdir(parents=True, exist_ok=True)
         
         # Write opening brace
         with write_start_and_end(output_file):  # Context manager ensures closing brace

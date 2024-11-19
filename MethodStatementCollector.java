@@ -1,4 +1,5 @@
 import com.github.javaparser.JavaParser;
+import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
@@ -11,6 +12,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -21,74 +23,72 @@ public class MethodStatementCollector {
     private Set<String> visitedMethods = new HashSet<>();
 
     public static void main(String[] args) {
-        if (args.length != 5) {
-            System.out.println("Usage: java MethodStatementCollector <methodName> <className> <package> <rootDir> <outputFile>");
+        if (args.length != 2) {
+            System.out.println("Usage: java MethodStatementCollector <rootDir> <outputFile>");
             return;
         }
 
-        String methodName = args[0];
-        String className = args[1];
-        String packageName = args[2];
-        String rootDir = args[3];
-        String outputFile = args[4];
+        String rootDir = args[0];
+        String outputFile = args[1];
 
         MethodStatementCollector collector = new MethodStatementCollector();
 
         try {
-            // Find and parse the class file in all subdirectories
-            CompilationUnit cu = collector.findAndParseClassFile(Paths.get(rootDir), className + ".java");
-            if (cu == null) {
-                System.out.println("Class not found in package or subdirectories.");
+            // List to store all collected statements
+            List<String> allStatements = new ArrayList<>();
+
+            // Find and parse all Java files in the directory
+            List<Path> javaFiles = collector.findJavaFiles(Paths.get(rootDir));
+
+            if (javaFiles.isEmpty()) {
+                System.out.println("No Java files found in the directory.");
                 return;
             }
 
-            // Collect statements and write to output file
-            List<String> statements = cu.findAll(MethodDeclaration.class).stream()
-                    .filter(method -> method.getNameAsString().equals(methodName))
-                    .flatMap(method -> collector.collectStatementsWithDeclarations(cu, method).stream())
-                    .collect(Collectors.toList());
+            for (Path javaFile : javaFiles) {
+                CompilationUnit cu = collector.parseClassFile(javaFile);
+                if (cu == null) {
+                    System.out.println("Failed to parse file: " + javaFile);
+                    continue;
+                }
 
-            collector.writeStatementsToFile(statements, outputFile, methodName, packageName, className, rootDir);
-        } catch (Exception e) {
-            System.err.println("Error parsing file or collecting statements: " + e.getMessage());
-        }
-    }
-
-    public CompilationUnit findAndParseClassFile(Path rootDir, String classFileName) {
-        File classFile = findClassFileRecursive(rootDir.toFile(), classFileName);
-        if (classFile != null) {
-            try {
-                JavaParser parser = new JavaParser();
-                return parser.parse(classFile).getResult().orElse(null);
-            } catch (Exception e) {
-                System.err.println("Error parsing class file: " + e.getMessage());
+                // Collect statements from all methods in the class
+                cu.findAll(MethodDeclaration.class).forEach(method -> {
+                    List<String> statements = collector.collectStatementsWithDeclarations(cu, method);
+                    collector.writeStatementsToFile(statements, outputFile, method.getNameAsString(),
+                            cu.getPackageDeclaration().map(pkg -> pkg.getNameAsString()).orElse("N/A"),
+                            cu.findFirst(com.github.javaparser.ast.body.ClassOrInterfaceDeclaration.class)
+                                    .map(cls -> cls.getNameAsString())
+                                    .orElse("N/A"),
+                            rootDir);
+                });
             }
+        } catch (Exception e) {
+            System.err.println("Error processing files: " + e.getMessage());
         }
-        return null;
     }
 
-    private File findClassFileRecursive(File dir, String classFileName) {
-        if (dir == null || !dir.exists() || !dir.isDirectory()) {
+    // Method to find all Java files in a directory
+    public List<Path> findJavaFiles(Path rootDir) throws IOException {
+        try (var paths = Files.walk(rootDir)) {
+            return paths.filter(path -> path.toString().endsWith(".java"))
+                    .collect(Collectors.toList());
+        }
+    }
+
+    // Method to parse a Java file
+    public CompilationUnit parseClassFile(Path javaFile) {
+        try {
+            String content = Files.readString(javaFile);
+            return StaticJavaParser.parse(content);
+        } catch (IOException e) {
+            System.err.println("Error reading file " + javaFile + ": " + e.getMessage());
             return null;
         }
-
-        for (File file : Objects.requireNonNull(dir.listFiles())) {
-            if (file.isDirectory()) {
-                // Recurse into subdirectories
-                File found = findClassFileRecursive(file, classFileName);
-                if (found != null) {
-                    return found;
-                }
-            } else if (file.isFile() && file.getName().equals(classFileName)) {
-                // System.out.println("Class file found: " + file.getAbsolutePath());
-                return file;
-            }
-        }
-        return null;
     }
 
+    // Collect statements and declarations from a method
     public List<String> collectStatementsWithDeclarations(CompilationUnit cu, MethodDeclaration method) {
-        // Collect method statements and variable declarations in scope
         List<Statement> statements = method.accept(new MethodCallCollector(cu, visitedMethods), null);
 
         // Find variable declarations inside the method
@@ -97,12 +97,12 @@ public class MethodStatementCollector {
                 .map(this::removeComments)
                 .collect(Collectors.toList());
 
-        // Collect variables used in method and check for declarations in the class
+        // Collect variables used in the method and check for declarations in the class
         Set<String> variableNames = findVariableNames(statementStrings);
         List<String> classDeclarations = findClassVariableDeclarationsWithModifiers(cu, variableNames);
 
         // Combine class-level declarations with the method's statements
-        statementStrings.addAll(0, classDeclarations);  // Add class-level declarations to the top
+        statementStrings.addAll(0, classDeclarations); // Add class-level declarations to the top
         return statementStrings;
     }
 
@@ -110,56 +110,52 @@ public class MethodStatementCollector {
         return statement.replaceAll("//.*", "").replaceAll("/\\*.*?\\*/", "").trim();
     }
 
-    private void writeStatementsToFile(List<String> statements, String outputFile, String methodName, String packageName, String className, String rootDir) {
-    File file = new File(outputFile);
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
-        // Start the JSON object
-        writer.write("\""+className+":"+methodName+"\": {");
-        writer.newLine();
-
-        // Write file_path, class_name, and method_name keys
-        
-        writer.write("  \"project\": \"" + escapeJson(rootDir) + "\",");
-        writer.newLine();
-        writer.write("  \"package\": \"" + escapeJson(packageName) + "\",");
-        writer.newLine();
-        writer.write("  \"class_name\": \"" + escapeJson(className) + "\",");
-        writer.newLine();
-        writer.write("  \"method_name\": \"" + escapeJson(methodName) + "\",");
-        writer.newLine();
-
-        // Write the statements array
-        writer.write("  \"statements\": [");
-        writer.newLine();
-        for (int i = 0; i < statements.size(); i++) {
-            writer.write("    \"" + escapeJson(statements.get(i)) + "\"");
-            if (i < statements.size() - 1) {
-                writer.write(",");
-            }
+    public void writeStatementsToFile(List<String> statements, String outputFile, String methodName,
+                                      String packageName, String className, String rootDir) {
+        File file = new File(outputFile);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+            // Start the JSON object
+            writer.write("\"" + className + ":" + methodName + "\": {");
             writer.newLine();
+
+            // Write file_path, class_name, and method_name keys
+            writer.write("  \"project\": \"" + escapeJson(rootDir) + "\",");
+            writer.newLine();
+            writer.write("  \"package\": \"" + escapeJson(packageName) + "\",");
+            writer.newLine();
+            writer.write("  \"class_name\": \"" + escapeJson(className) + "\",");
+            writer.newLine();
+            writer.write("  \"method_name\": \"" + escapeJson(methodName) + "\",");
+            writer.newLine();
+
+            // Write the statements array
+            writer.write("  \"statements\": [");
+            writer.newLine();
+            for (int i = 0; i < statements.size(); i++) {
+                writer.write("    \"" + escapeJson(statements.get(i)) + "\"");
+                if (i < statements.size() - 1) {
+                    writer.write(",");
+                }
+                writer.newLine();
+            }
+            writer.write("  ]");
+            writer.newLine();
+
+            // End the JSON object
+            writer.write("},");
+            writer.newLine();
+        } catch (IOException e) {
+            System.err.println("Error writing to JSON file: " + e.getMessage());
         }
-        writer.write("  ]");
-        writer.newLine();
-
-        // End the JSON object
-        writer.write("},");
-        writer.newLine();
-
-        // System.out.println("Statements written to JSON file: " + outputFile);
-    } catch (IOException e) {
-        System.err.println("Error writing to JSON file: " + e.getMessage());
     }
-}
 
-// Escapes special characters in JSON strings
-private String escapeJson(String input) {
-    return input.replace("\\", "\\\\")   // Escape backslashes
-                .replace("\"", "\\\"")   // Escape double quotes
-                .replace("\n", "\\n")   // Escape newline
-                .replace("\r", "\\r")   // Escape carriage return
-                .replace("\t", "\\t");  // Escape tabs
-}
-
+    private String escapeJson(String input) {
+        return input.replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("\n", "\\n")
+                .replace("\r", "\\r")
+                .replace("\t", "\\t");
+    }
 
     private Set<String> findVariableNames(List<String> statements) {
         Set<String> variableNames = new HashSet<>();
@@ -176,7 +172,6 @@ private String escapeJson(String input) {
         cu.findAll(FieldDeclaration.class).forEach(field -> {
             for (VariableDeclarator variable : field.getVariables()) {
                 if (variableNames.contains(variable.getNameAsString())) {
-                    // Collect modifiers (e.g., public, static) and format as a full declaration
                     String modifiers = field.getModifiers().stream()
                             .map(modifier -> modifier.getKeyword().asString())
                             .collect(Collectors.joining(" "));

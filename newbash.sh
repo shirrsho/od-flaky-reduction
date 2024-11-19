@@ -24,4 +24,4 @@ mkdir -p $OUT_DIR
 javac -d $OUT_DIR -cp ".:javaparser-core-3.23.1.jar" MethodStatementCollector.java
 
 # Run the Java program with the provided arguments
-java -cp "$OUT_DIR:javaparser-core-3.23.1.jar" MethodStatementCollector "$METHOD_NAME" "$CLASS_NAME" "$PACKAGE" "$SRC_DIR" "$OUTPUT_FILE"
+java -cp "$OUT_DIR:javaparser-core-3.23.1.jar" MethodStatementCollector "$SRC_DIR" "$OUTPUT_FILE"
