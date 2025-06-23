@@ -23,12 +23,11 @@ def find_static_fields(ast):
                 if isinstance(type_declaration, dict):  # Ensure it's a dictionary
                     field_declarations = type_declaration.get('FieldDeclaration', [])
                     
-                    # Ensure field_declarations is a list
                     if not isinstance(field_declarations, list):
                         field_declarations = [field_declarations]
 
                     for field in field_declarations:
-                        if isinstance(field, dict):  # Ensure we only process dicts
+                        if isinstance(field, dict):
                             modifiers = field.get('Modifier', [])
                             if isinstance(modifiers, list) and 'static' in modifiers:
                                 variable_name = field.get('VariableDeclarationFragment', None)
@@ -41,11 +40,9 @@ def find_static_fields(ast):
     return static_fields
 
 def is_test_method(file_path):
-    """Checks if the file path contains 'test' or 'tests' (case-insensitive)."""
     return 'test' in file_path.lower().split('/') or 'tests' in file_path.lower().split('/')
 
 def find_test_methods_and_dependencies(ast, static_fields, identifier):
-    """Finds test methods and checks if they reference any static fields."""
     dependencies = {}
 
     test_count = 0
@@ -64,22 +61,21 @@ def find_test_methods_and_dependencies(ast, static_fields, identifier):
             
             if isinstance(type_declarations, dict): 
                 type_declarations = type_declarations.get('TypeDeclaration', [])
-                # Ensure type_declarations is a list
                 if not isinstance(type_declarations, list):
                     type_declarations = [type_declarations]
                 
                 for type_declaration in type_declarations:
-                    if isinstance(type_declaration, dict):  # Ensure it's a dictionary
+                    if isinstance(type_declaration, dict):
                         method_declarations = type_declaration.get('MethodDeclaration', [])
                         
                         if not isinstance(method_declarations, list):
-                            method_declarations = [method_declarations]  # Ensure it's a list
+                            method_declarations = [method_declarations]
 
                         for method in method_declarations:
                             if is_test_method(file_path=file_path) : 
                                 test_count = test_count + 1
                                 
-                            if isinstance(method, dict):  # Ensure method is a dictionary
+                            if isinstance(method, dict):
                                 method_name = method.get('SimpleName', None)
 
                                 key = f"{file_path}: {method_name}"
@@ -95,7 +91,6 @@ def find_test_methods_and_dependencies(ast, static_fields, identifier):
     return dependencies
 
 def write_dependencies_to_file(dependencies, identifier):
-    """Write the detected dependencies to a file."""
     Path('io/found_tests').mkdir(parents=True, exist_ok=True)
     Path('io/dependencies').mkdir(parents=True, exist_ok=True)
     with open('io/dependencies/'+identifier, 'a+') as f:
